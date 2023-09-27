@@ -2,6 +2,7 @@
 const plugin = require("tailwindcss/plugin");
 
 module.exports = {
+  
   content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   future: {
     hoverOnlyWhenSupported: true,
@@ -61,6 +62,7 @@ module.exports = {
     },
   },
   plugins: [
+    require("daisyui"),
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
     plugin(({ addVariant }) => {

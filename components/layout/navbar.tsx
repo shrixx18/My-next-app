@@ -5,9 +5,10 @@ import Link from "next/link";
 import useScroll from "@/lib/hooks/use-scroll";
 import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
-import { Session } from "next-auth";
 
-export default function NavBar({ session }: { session: Session | null }) {
+import { motion } from "framer-motion";
+
+export default function NavBar() {
   const { SignInModal, setShowSignInModal } = useSignInModal();
   const scrolled = useScroll(50);
 
@@ -24,25 +25,26 @@ export default function NavBar({ session }: { session: Session | null }) {
         <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between w-full">
           <Link href="/" className="flex items-center font-display text-2xl">
             <Image
-              src="/logo.png"
-              alt="Precedent logo"
+              src="/logo1.png"
+              alt="PowerBlog logo"
               width="30"
               height="30"
               className="mr-2 rounded-sm"
             ></Image>
-            <p>Precedent</p>
+            <p>Power <span className=" text-neutral-600 font-extrabold">Blog</span></p>
           </Link>
           <div>
-            {session ? (
-              <UserDropdown session={session} />
-            ) : (
-              <button
-                className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
-                onClick={() => setShowSignInModal(true)}
+           
+              <motion.button
+              onClick={() => setShowSignInModal(true)}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              style={{ backgroundColor: 'black', color: 'white',border: 'none',borderRadius: '20px', padding: '10px 20px', cursor: 'pointer' }}
               >
-                Sign In
-              </button>
-            )}
+              Sign In
+              </motion.button>
+              
+            
           </div>
         </div>
       </div>
